@@ -29,7 +29,7 @@ const setCount = ({count} ) => ({
 
 // Reducers
 // 1) Reducers are pure functions
-// 2) Never change State or Action
+// 2) Never change state or action
 
 const countReducer = (state = { count: 0 },action) => {
     switch (action.type) {
