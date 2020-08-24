@@ -16,7 +16,7 @@ export const sortByAmount = () => ({
 })
 // SET_START_DATE
 
-export const setStateDate = (startDate) => ({
+export const setStartDate = (startDate) => ({
     type: 'SET_START_DATE',
     startDate
 })

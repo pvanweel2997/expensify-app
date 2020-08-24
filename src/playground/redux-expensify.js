@@ -52,7 +52,7 @@ const sortByAmount = () => ({
 })
 // SET_START_DATE
 
-const setStateDate = (startDate) => ({
+const setStartDate = (startDate) => ({
     type: 'SET_START_DATE',
     startDate
 })
@@ -178,9 +178,9 @@ const expenseTwo = store.dispatch(addExpense({ description: 'Coffee', amount: 30
 store.dispatch(sortByAmount())
 // store.dispatch(sortByDate())
 
-// store.dispatch(setStateDate(0))
+// store.dispatch(setStartDate(0))
 // store.dispatch(setEndDate(999))
-// store.dispatch(setStateDate())
+// store.dispatch(setStartDate())
 
 const demoState = {
     expenses: [{
