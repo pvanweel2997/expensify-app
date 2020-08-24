@@ -75,6 +75,5 @@ test('should sort by amount',() => {
         endDate: undefined
     };
     const result = selectExpenses(expenses, filters);
-    console.log(result)
     expect(result).toEqual([ expenses[1],expenses[2],expenses[0]])
 })
