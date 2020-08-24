@@ -3,9 +3,6 @@
 const expenseReducerDefaultState = [];
 
 export default (state = expenseReducerDefaultState, action) => {
-    if (action.type === 'REMOVE_EXPENSE') {
-        console.log('action type: '+action.type,action.id)
-    }
     switch (action.type) {
         case 'ADD_EXPENSE':
             return [
