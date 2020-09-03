@@ -1,4 +1,5 @@
 import * as firebase from 'firebase';
+import moment from 'moment';
 
 const config = {
     apiKey: "AIzaSyDQxRx4iJ-l0K-85ktKwS7nCKse_aJZuF8",
@@ -16,14 +17,92 @@ const config = {
 
 const database = firebase.database();
 
-const onValueChange = database.ref().on('value',(snapshot) => {
-    const val = snapshot.val();
-    console.log(`${val.name} is a ${val.job.title} at ${val.job.company}`);
-});
+const expenseArray = [{
+    description: 'Rent',
+    note: 'Monthly Rent',
+    amount: 125000,
+    createdAt: moment().valueOf()
+},{
+    description: 'Electric',
+    note: 'Electriity',
+    amount: 11000,
+    createdAt: moment().valueOf()
+},{
+    description: 'Cable',
+    note: 'Househould expense',
+    amount: 21000,
+    createdAt: moment().valueOf()
+}]
 
-database.ref().update({
-    'job/company' : 'Amazon'
+// expenseArray.forEach((expense) => {
+//     database.ref('expenses').push({
+//         ...expense
+//     })
+// })
+
+
+const convertData = (snapshot) => {
+    console.log('data changed');
+    const expenses = [];
+    snapshot.forEach(childSnapshot => {
+        expenses.push({
+            id: childSnapshot.key,
+            ...childSnapshot.val()
+        });
+    });
+    console.log(expenses);
+}
+
+// subscribe change notifications
+const onValueChange = database.ref('expenses').on('value',convertData,(e) => {
+      console.log('error with data fetching',e);
+  })
+
+// read data
+database.ref('expenses')
+.once('value')
+.then(convertData)
+
+// subscribe to child_removed (row is removed)
+database.ref('expenses').on('child_removed',(snapshot) => {
+    console.log(snapshot.key,snapshot.val());
 })
+
+// subscribe to child_changed (row is changed)
+database.ref('expenses').on('child_changed',(snapshot) => {
+    console.log(snapshot.key,snapshot.val());
+})
+
+// subscribe to added (row is added)
+database.ref('expenses').on('child_added',(snapshot) => {
+    console.log(snapshot.key,snapshot.val());
+})
+
+// database.ref('expenses/-MGIwJhk_RBC2AUsWy6O').update({
+//     description: 'Monthly Rent'
+// })
+
+// database.ref('notes/-MGIqxlGu7C_HsuHzLLM').update({
+//     body : 'Buy food'
+// });
+
+// database.ref('notes/-MGIqxlGu7C_HsuHzLLM').remove();
+
+// database.ref('notes').push({
+//     title: 'Course topics',
+//     body: 'React Native, Angular, Python'
+// }); 
+
+
+// database.ref('notes').set(notes);
+// const onValueChange = database.ref().on('value',(snapshot) => {
+//     const val = snapshot.val();
+//     console.log(`${val.name} is a ${val.job.title} at ${val.job.company}`);
+// });
+
+// database.ref().update({
+//     'job/company' : 'Amazon'
+// })
 
 
 
