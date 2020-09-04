@@ -1,15 +1,16 @@
 import * as firebase from 'firebase';
 import moment from 'moment';
 
+console.log('databaseurl',process.env.FIREBASE_DATABASE_URL);
 const config = {
-    apiKey: "AIzaSyDQxRx4iJ-l0K-85ktKwS7nCKse_aJZuF8",
-    authDomain: "expensify-bcf8c.firebaseapp.com",
-    databaseURL: "https://expensify-bcf8c.firebaseio.com",
-    projectId: "expensify-bcf8c",
-    storageBucket: "expensify-bcf8c.appspot.com",
-    messagingSenderId: "543099159479",
-    appId: "1:543099159479:web:8efbd4e089de5b029a9e32",
-    measurementId: "G-T1J2MYFJ98"
+    apiKey: process.env.FIREBASE_API_KEY,
+    authDomain: process.env.FIREBASE_AUTH_DOMAIN,
+    databaseURL: process.env.FIREBASE_DATABASE_URL,
+    projectId: process.env.FIREBASE_PROJECT_ID,
+    storageBucket: process.env.FIREBASE_STORAGE_BUCKET,
+    messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID,
+    appId: process.env.APP_ID
+    // measurementId: "G-T1J2MYFJ98"
   };
 
   firebase.initializeApp(config);

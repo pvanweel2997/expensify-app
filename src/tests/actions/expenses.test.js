@@ -88,7 +88,7 @@ test('should add expense with defaults to database and store',(done) => {
         // returning a promise
         return database.ref(`expenses/${actions[0].expense.id}`).once('value');
 
-    }).then((snapshot) => { // tresolve for the promise above (return databse.ref)
+    }).then((snapshot) => { // resolve for the promise above (return databse.ref)
         expect(snapshot.val()).toEqual(expenseDefaults);
         done();
     });
