@@ -21,6 +21,8 @@ export default (state = expenseReducerDefaultState, action) => {
                     return expense;
                 }
             })
+        case 'SET_EXPENSES':  // we don't care about previous state as we are wiping it out here
+            return action.expenses;
         default:
             return state;
     }
