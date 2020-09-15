@@ -68,8 +68,16 @@ export const startRemoveExpense = ({id} = {}) => {
         return database.ref(`expenses/${id}`).remove().then(() => {
             dispatch(removeExpense({id}));
         }).catch((error) => {
-            console.log('error',error)
+            console.log('error removing expense',error)
         })
     }
 }
+
+export const startEditExpense = (id,updates) => {
+    return (dispatch) => {
+        return database.ref(`expenses/${id}`).update(updates).then(() => { 
+            dispatch(editExpense(id,updates));
+        })
+    };
+};
 
